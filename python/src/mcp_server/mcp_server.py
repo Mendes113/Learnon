@@ -431,6 +431,23 @@ def register_modules():
         logger.error(f"✗ Failed to register task tools: {e}")
         logger.error(traceback.format_exc())
 
+    # Education Workflow Tools
+    try:
+        from src.mcp_server.features.education import register_education_tools
+
+        register_education_tools(mcp)
+        modules_registered += 1
+        logger.info("Education tools registered")
+    except ImportError as e:
+        logger.warning(f"Education tools module not available (optional): {e}")
+    except (SyntaxError, NameError, AttributeError) as e:
+        logger.error(f"Code error in education tools - MUST FIX: {e}")
+        logger.error(traceback.format_exc())
+        raise
+    except Exception as e:
+        logger.error(f"Failed to register education tools: {e}")
+        logger.error(traceback.format_exc())
+
     # Document Management Tools
     try:
         from src.mcp_server.features.documents import register_document_tools

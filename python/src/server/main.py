@@ -26,6 +26,7 @@ from .api_routes.internal_api import router as internal_router
 from .api_routes.knowledge_api import router as knowledge_router
 from .api_routes.mcp_api import router as mcp_router
 from .api_routes.projects_api import router as projects_router
+from .api_routes.education_api import router as education_router
 
 # Import Socket.IO handlers to ensure they're registered
 from .api_routes import socketio_handlers  # This registers all Socket.IO event handlers
@@ -210,6 +211,7 @@ app.include_router(mcp_router)
 # app.include_router(mcp_client_router)  # Removed - not part of new architecture
 app.include_router(knowledge_router)
 app.include_router(projects_router)
+app.include_router(education_router)
 app.include_router(tests_router)
 app.include_router(agent_chat_router)
 app.include_router(internal_router)
